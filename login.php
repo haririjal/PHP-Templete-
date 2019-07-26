@@ -1,26 +1,7 @@
 <?php
     session_start();
-    if(isset($_POST['btn']))
-    {
-      $username=$_POST['username'];
-      $password=$_POST['password'];
+    ?>
 
-      $q="select username, password from session where username='$username' and password='$password'";
-
-      $con = mysqli_connect('localhost','root','') or die(mysqli_error($con));
-      $db = mysqli_select_db($con,"3rdsemdynamic") or die(mysqli_error($con));
-      $res = mysqli_query($con,$q) or die(mysqli_error($con));
-      if(mysqli_affected_rows($con)>0){
-         $_SESSION['username']=$username;
-        header('location:index.php');
-
-      }else{
-        die('login unsuccess');
-      }
-    }
-
-
-?>
 <!-- ===================== -->
 <?php
 include "header.php";
@@ -67,14 +48,14 @@ include "header.php";
 		<br> <br>
 <h2 align="center"> <u> Login Form </u></h2><br> <br>
 <label > 
-<form>
-  <p align="center">  <b>Username: </b><br> <input type="text" name="" id="field" placeholder="Username" style="border-radius: 5px;padding-left: 10px;font-size: 18px; border-color:#97455F; " required><br><br>
+<form method="post" action="login.php">
+  <p align="center">  <b>Username: </b><br> <input type="text" name="username" id="field" placeholder="Username" style="border-radius: 5px;padding-left: 10px;font-size: 18px; border-color:#97455F; " required><br><br>
   
-  <b>Password:</b><br><input type="password" name=""id="field" placeholder="Password" style="border-radius: 5px;padding-left: 10px;font-size: 18px; border-color:#97455F; " required><br><br>
+  <b>Password:</b><br><input type="password" name="password"id="field" placeholder="Password" style="border-radius: 5px;padding-left: 10px;font-size: 18px; border-color:#97455F; " required><br><br>
   
 
   
-  <input type="submit" name="" value="Login" id="ssubmit" style="border-color: #97455F; border-radius: 5px; font-size:15px; "> 
+  <input type="submit" name="btn" value="Login" id="ssubmit" style="border-color: #97455F; border-radius: 5px; font-size:15px; "> 
   </p>
   
   <p align="center"> <a href="signup.php" style="text-decoration: none; font-size: 20px; "> Create Account </a> </p>
@@ -83,6 +64,29 @@ include "header.php";
 </form>
 </label> </div></p>
 </div>
+ <?php
+    if(isset($_POST['btn']))
+    {
+      $username=$_POST['username'];
+      $password=$_POST['password'];
+
+     
+
+      $con = mysqli_connect('localhost','root','') or die(mysqli_error($con));
+      $db = mysqli_select_db($con,"3rdsemdynamic") or die(mysqli_error($con));
+       $q="select username, password from session where username='$username' and password='$password'";
+      $res = mysqli_query($con,$q) or die(mysqli_error($con));
+      if(mysqli_affected_rows($con)>0){
+         $_SESSION['username']=$username;
+        header('location:dashboard.php');
+
+      }else{
+        die('login unsuccess');
+      }
+    }
+
+
+?>
 </body>
 </html>
 

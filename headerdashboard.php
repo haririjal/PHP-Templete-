@@ -1,11 +1,8 @@
 <?php
-if(!(isset($_SESSION['username']))){
-	header('location:login.php');
-}
-
-
-
-
+		session_start();
+		if(!(isset($_SESSION['username']))){
+				header('location:login.php');
+		}
 ?>
 <html>
 <head>
@@ -33,6 +30,26 @@ text-decoration: none;
 li a:hover {
 background-color: #111;
 }
+.submenu{
+	position: absolute;
+	display: none;
+	top:25px;
+}
+.submenu>a{
+	text-decoration: none;
+	background-color: green;
+	padding: 10px 30px;
+	display: block;
+	color:white;
+	transition: background-color 2s;
+	
+}
+.submenu>a:hover{
+	background-color:orange;
+}
+#dropdown{
+	position: relative;
+}
 </style>
 </head>
 <body>
@@ -40,7 +57,14 @@ background-color: #111;
 <ul>
 
 <li><a href="index.php">Visit Site</a></li>
-<li><a href="dashboard.php">Dashboard</a></li>
+<li id='dropdown'>
+				<a href="">Dashboard</a>
+<div class="submenu">
+					<a href="">Slider </a>
+					<a href="">Body</a>
+					<a href="">Footer</a>
+					</div>
+				</li>
 <li><a href="dashboard.php">Slider</a></li>
 <li><a href="dashboard.php">Body</a></li>
 <li><a href="dashboard.php">Footer</a></li>
