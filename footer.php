@@ -1,3 +1,4 @@
+<!--footer.php-->
 <div class="whole_footer"><div>
 	<div >
 		<hr id="horizontal_line">
